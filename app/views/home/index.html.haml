@@ -1,0 +1,23 @@
+= content_for :title, 'Where have you been?'
+
+.row
+  .span-1
+  .span-3
+    %p
+      %b Trip:
+      Peru
+    %p
+      %b City/Place:
+      Machu Picchu
+    %p.small
+      Andes in the Urubamba valley along the train tracks on the way up to Machu Picchu.
+
+  .span-16.centered
+    = image_tag 'home_photo.jpg'
+
+  .span-4.last
+    - unless user_signed_in?
+      = button_to 'Sign Up', new_user_registration_path, :method => :get
+      %br
+      Got an account?
+      = link_to 'Sign In', new_user_session_path

@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag "application"
+
+    %title
+      Where Have You Been?
+
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    .row
+      .span-24.spacer
+
+    .row
+      .span-6
+        - flash.each do |key,val|
+          - unless val.blank?
+            %p{class: key}
+              = val
+      .span-12
+        .title
+          %h1
+            = title
+
+      .span-2
+      .span-4.last
+        - if user_signed_in?
+          = link_to "Sign Out", destroy_user_session_path
+        - else
+          = link_to "Sign In", new_user_session_path
+          %br
+          No account?
+          = link_to "Sign Up", new_user_registration_path
+          
+    .row
+      .span-24.spacer
+    .row
+      .span-24.spacer
+
+    .column
+      = yield
